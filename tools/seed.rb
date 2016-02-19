@@ -1,0 +1,6 @@
+farmer = Farmer.new('Harry')
+farmer = Farmer.new('Larry')
+farmer = Farmer.new('Bubba')
+farmer = Farmer.new('Jerry')
+farmer = Farmer.new('Clyde')
+farmer = Farmer.new('Cleatus')
