@@ -8,7 +8,6 @@ class FarmerShowView
   
   def render
     return "We have no farmers under that name!" if @farmers.length == 0
-    # binding.pry
     puts "Here\'s a list of all farmers named #{@farmers.first.name}"
         @farmers.each do |farmer|  
           puts "#{farmer.name}"

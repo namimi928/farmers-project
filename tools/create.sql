@@ -8,12 +8,6 @@ CREATE TABLE farmers (
 CREATE TABLE crops (
     id INTEGER PRIMARY KEY,
     name TEXT,
-    boxes INTEGER,
-    price INTEGER
-);
-
-CREATE TABLE inventory (
-    id INTEGER PRIMARY KEY,
-    crops_id INTEGER,
+    price INTEGER,
     farmer_id INTEGER
 );

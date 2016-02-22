@@ -74,5 +74,17 @@ describe "Farmer" do
         expect(farmer.first.name).to eq("Nami")
       end
     end
+
+    describe "#new_crop" do
+       before(:each) do
+        Farmer.create_table
+        Crop.create_table
+      end
+      it "creates a new crop that is associated to a farmer by id" do
+        bubba.new_crop
+        expect(Crop.all.length).to eq(1)
+      end
+    end
+
   end
 end

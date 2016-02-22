@@ -77,5 +77,8 @@ class Farmer
     farmer
   end
 
+  def new_crop
+    Crop.new(attributes, self.id)
+  end
 
 end
