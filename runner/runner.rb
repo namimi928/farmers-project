@@ -1,3 +1,5 @@
+require 'pry'
+
 require_relative '../config/environment.rb'
 require_relative '../tools/sql_runner.rb'
 
@@ -16,8 +18,6 @@ until action == 'exit'
             puts 'What\'s the name of the farmer are you looking for?'
             farmer_controller = FarmerController.new.show
         when 'see farmers'
-            farmers = FarmerController.new.index 
-        # when 'bring crops'
-        #     crops = FarmerController.new    
+            FarmerController.new.index   
     end
 end  

@@ -1,3 +1,4 @@
+require 'pry'
 class FarmerCreateView
 
   attr_accessor :farmer_id

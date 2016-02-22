@@ -8,6 +8,7 @@ class Farmer
   extend Collectable
 
   def initialize(attributes, id = nil)
+    # binding.pry
       @name = attributes[:name]
       @age = attributes[:age]
       @location = attributes[:location]
@@ -23,9 +24,9 @@ class Farmer
     end
   end
 
-  def self.count
-    @@farmers.length
-  end
+  # def self.count
+  #   @@farmers.length
+  # end
 
   def self.unregister(farmer_id)
     sql = <<-SQL 
