@@ -1,27 +1,30 @@
 require 'pry'
 class FarmerController
   
-  def register
-    FarmerNewView.new.render
+  def register  
+    farmer = FarmerNewView.new.render
   end
 
-  def create(farmer_name)
-    farmer = Farmer.new(farmer_name)
-    view = FarmerCreateView.new(farmer)
+  def create(attributes)
+    farmer_id = Farmer.new(attributes).save
+    view = FarmerCreateView.new(farmer_id)
     view.render
   end  
   
-  def show(farmer_name)
+  def show
+    farmer_name = gets.chomp
     farmer = Farmer.find_by_name(farmer_name)
     view = FarmerShowView.new(farmer)
     view.render
   end
 
-  def delete(farmer_name)
-    farmer = Farmer.find_by_name(farmer_name)
-    view = FarmerDeleteView.new(farmer)
-    view.render
-    Farmer.unregister(farmer)  
+  def delete
+    farmer_name = gets.chomp
+    farmers = Farmer.find_by_name(farmer_name)
+    confirm = FarmerDeleteView.new(farmers).confirm
+    Farmer.unregister(confirm) 
+    FarmerDeleteView.new(farmer_name).render
+
   end
 
   def index

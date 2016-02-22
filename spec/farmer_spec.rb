@@ -4,7 +4,7 @@ require "pry"
 describe "Farmer" do
   let(:bubba) {Farmer.new("Bubba", 57, "ID")}
 
-  before(:each) do
+  before(:each) do  
     DB[:conn].execute("DROP TABLE IF EXISTS farmers")
   end
 
@@ -77,7 +77,6 @@ describe "Farmer" do
       end
       it 'can retrieve a farmers info from the database' do
         farmer = Farmer.find_by_name("Nami")
-        binding.pry
         expect(farmer.length).to eq(2)
         expect(farmer.first.name).to eq("Nami")
       end

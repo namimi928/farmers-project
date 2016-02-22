@@ -1,5 +1,5 @@
 require_relative '../config/environment.rb'
-require_relative '../tools/seed.rb'
+require_relative '../tools/sql_runner.rb'
 
 action = 'something'
 until action == 'exit'
@@ -7,17 +7,17 @@ until action == 'exit'
     action = gets.chomp
     case action
         when 'register'
-            farmer_name = FarmerController.new.register
-            FarmerController.new.create(farmer_name)
+            farmer = FarmerController.new.register
+            FarmerController.new.create(farmer)
         when 'unregister'
             puts 'What\'s your name, sir?'
-            farmer_name = gets.chomp
-            farmer_controller = FarmerController.new.delete(farmer_name)
+            farmer_controller = FarmerController.new.delete
         when 'find farmer'
-            puts 'What farmer are you looking for?'
-            farmer_name = gets.chomp
-            farmer_controller = FarmerController.new.show(farmer_name)
+            puts 'What\'s the name of the farmer are you looking for?'
+            farmer_controller = FarmerController.new.show
         when 'see farmers'
-            farmers = FarmerController.new.index    
+            farmers = FarmerController.new.index 
+        # when 'bring crops'
+        #     crops = FarmerController.new    
     end
 end  

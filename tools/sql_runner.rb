@@ -1,6 +1,9 @@
 require_relative '../config/environment'
 
 class SQLRunner
+
+  attr_accessor :db
+
   def initialize(db)
     @db = db
   end
@@ -14,4 +17,5 @@ class SQLRunner
     sql = File.read('data.sql')
     @db.execute_batch(sql)
   end
+
 end

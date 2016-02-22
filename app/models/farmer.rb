@@ -7,26 +7,33 @@ class Farmer
 
   extend Collectable
 
-  @@farmers = []
-
-  def initialize(name, age, location, id = nil)
-      @name = name
-      @age = age
-      @location = location
+  def initialize(attributes, id = nil)
+      @name = attributes[:name]
+      @age = attributes[:age]
+      @location = attributes[:location]
       @id = id
-      @@farmers << self
   end
 
   def self.all
-    @@farmers
+    sql = <<-SQL 
+      SELECT * FROM #{self}s
+      SQL
+    DB[:conn].execute(sql).map do |row|
+      self.new_from_db(row)
+    end
   end
 
   def self.count
     @@farmers.length
   end
 
-  def self.unregister(farmer)
-    @@farmers.delete(farmer)
+  def self.unregister(farmer_id)
+    sql = <<-SQL 
+      DELETE FROM #{self}s
+      WHERE id = ?;
+        );
+      SQL
+    DB[:conn].execute(sql, farmer_id)
   end
 
   def self.create_table
@@ -60,7 +67,7 @@ class Farmer
   end
 
   def self.new_from_db(row)
-    self.new(row[1], row[2], row[3], row[0])
+    self.new({name: row[1], age: row[2], location: row[3]}, row[0])
   end
 
   def self.create(attributes)
